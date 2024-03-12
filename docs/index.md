@@ -69,6 +69,28 @@ provider "proxmox" {
 
 ## Creating the connection via username and API token
 
+Create an API Token, named for example `mytoken`, using
+```bash
+# On proxmox
+pveum user token add terraform-prov@pve mytoken
+```
+The output would be something like, which 
+```
+┌──────────────┬────────────────────────────────────────────────────┐
+│ key          │ value                                              │
+╞══════════════╪════════════════════════════════════════════════════╡
+│ full-tokenid │ terraform-prov@pve!mytoken                         │
+├──────────────┼────────────────────────────────────────────────────┤
+│ info         │ {"privsep":1} │
+├──────────────┼────────────────────────────────────────────────────┤
+│ value        │ afcd8f45-acc1-4d0f-bb12-a70b0777ec11               │
+└──────────────┴────────────────────────────────────────────────────┘
+```
+
+Note an API token could be also created from the GUI by navigating to the `Data Center > API Tokens`.
+
+Then set the necessary variables
+
 ```bash
 export PM_API_TOKEN_ID="terraform-prov@pve!mytoken"
 export PM_API_TOKEN_SECRET="afcd8f45-acc1-4d0f-bb12-a70b0777ec11"
